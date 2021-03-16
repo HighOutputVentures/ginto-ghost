@@ -10,7 +10,7 @@ resources:
       default: micro
     platform: node
     build: ./build.sh
-    start: ghost run
+    start: cd ./app && ghost run
     https: true
   - name: data
     type: volume

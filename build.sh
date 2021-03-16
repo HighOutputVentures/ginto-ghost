@@ -1,7 +1,7 @@
 #!/bin/bash
 
-npm install -g ghost
+npm install -g ghost-cli
 
-mkdir ghost && cd ghost
+mkdir app && cd app
 
 ghost install --db sqlite3 --no-start --no-setup
