@@ -1,0 +1,30 @@
+version: 0.1
+name: ghost
+description: An open-source headless content management system.
+image: logo.png
+resources:
+  - name: main
+    type: container
+    size:
+      minimum: nano
+      default: micro
+    platform: node
+    build: ./build.sh
+    start: ghost run
+    https: true
+  - name: data
+    type: volume
+    size: 
+      minimum: 1
+      default: 2
+    path: /mnt/data
+    container: main
+inputs:
+  - name: database
+    label: Database
+    type: enum
+    values:
+      - SQLite
+      - MySQL
+    required: true
+    default: SQLite
