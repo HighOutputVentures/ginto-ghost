@@ -4,7 +4,7 @@ yarn global add knex-migrator grunt-cli ember-cli
 
 mkdir -p /var/www/ghost
 
-git clone --recurse-submodules --shallow-submodules --depth 1 https://github.com/TryGhost/Ghost.git#4.0.1 /var/www/ghost
+git clone --recurse-submodules --shallow-submodules --depth 1 https://github.com/TryGhost/Ghost.git#v4.0.1 /var/www/ghost
 
 cd /var/www/ghost && yarn install
 
