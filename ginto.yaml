@@ -10,7 +10,7 @@ resources:
       default: micro
     platform: node
     build: ./build.sh
-    start: node -e "setInterval(() => console.log(new Date().toISOString()), 5000)"
+    start: ./start.sh
     https: true
   - name: data
     type: volume

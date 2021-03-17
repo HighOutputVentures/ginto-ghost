@@ -14,16 +14,6 @@ cd /var/www/ghost && grunt subgrunt:init
 
 cd /var/www/ghost && grunt clean:tmp
 
-cd /var/www/ghost && grunt prod
-
-mkdir -p /mnt/data/content/data
-
-mkdir -p /mnt/data/content/images
-
-mkdir -p /mnt/data/content/themes
-
-mkdir -p /mnt/data/content/logs
-
-mkdir -p /mnt/data/content/adapters
+cd /var/www/ghost && grunt prod || (exit 0)
 
 node /srv/node/config.js
