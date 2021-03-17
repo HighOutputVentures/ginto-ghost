@@ -1,15 +1,29 @@
 #!/bin/bash
 
-npm install -g ghost-cli
-
-adduser --disabled-password --gecos '' appuser
+yarn global add knex-migrator grunt-cli ember-cli
 
 mkdir -p /var/www/ghost
 
-chown appuser:appuser /var/www/ghost
+git clone --recurse-submodules --shallow-submodules --depth 1 https://github.com/TryGhost/Ghost.git#4.0.1 /var/www/ghost
 
-runuser -l appuser -c 'cd /var/www/ghost && ghost install --db sqlite3 --no-start --no-setup --no-stack' 
+cd /var/www/ghost && yarn install
 
-node ./config.js
+cd /var/www/ghost && grunt update_submodules:pinned
 
-chown appuser:appuser /var/www/ghost/config.production.json
+cd /var/www/ghost && grunt subgrunt:init
+
+cd /var/www/ghost && grunt clean:tmp
+
+cd /var/www/ghost && grunt prod
+
+mkdir -p /mnt/data/content/data
+
+mkdir -p /mnt/data/content/images
+
+mkdir -p /mnt/data/content/themes
+
+mkdir -p /mnt/data/content/logs
+
+mkdir -p /mnt/data/content/adapters
+
+node /srv/node/config.js
