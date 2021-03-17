@@ -15,7 +15,7 @@ const config = {
   database: {
     client: 'sqlite3',
     connection: {
-      filename: '/var/www/ghost/content/data/ghost.db'
+      filename: '/mnt/data/content/data/ghost.db'
     }
   },
   server: {
