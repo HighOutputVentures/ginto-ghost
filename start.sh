@@ -12,4 +12,4 @@ mkdir -p /mnt/data/content/adapters
 
 ln -s /var/www/ghost/content/themes/casper /mnt/data/content/themes/casper || true
 
-NODE_ENV=production yarn start
+cd /var/www/ghost && NODE_ENV=production yarn start
