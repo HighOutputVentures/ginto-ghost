@@ -13,16 +13,15 @@ const config = {
     }
   },
   mail: {
-    'transport': 'Direct'
+    transport: 'Direct'
   },
   logging: {
     transports: [
-      'file',
       'stdout'
     ]
   },
   paths: {
-    'contentPath': '/mnt/data/content'
+    contentPath: '/mnt/data/content'
   }
 };
 
