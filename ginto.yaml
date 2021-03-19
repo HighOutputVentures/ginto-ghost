@@ -15,6 +15,18 @@ resources:
     environment:
       - name: URL
         value: '{{ base_url }}'
+      - name: MAIL_PROVIDER
+        value: '{{ mail_provider }}'
+      - name: MAILGUN_USERNAME
+        value: '{{ mailgun_username }}'
+      - name: MAILGUN_PASSWORD
+        value: '{{ mailgun_password }}'
+      - name: SES_SERVER_NAME
+        value: '{{ ses_server_name }}'
+      - name: SES_ACCESS_KEY_ID
+        value: '{{ ses_access_key_id }}'
+      - name: SES_SECRET_ACCESS_KEY
+        value: '{{ ses_secret_access_key }}'
   - name: data
     type: volume
     size: 
@@ -26,4 +38,52 @@ inputs:
   - name: base_url
     label: Base URL
     type: text
-
+  - name: mail_provider
+    label: Mail Provider
+    type: enum
+    values:
+      - Direct
+      - Mailgun
+      - SES
+    required: true
+    default: Direct
+  - name: mailgun_username
+    label: Mailgun Username
+    type: text
+    conditional:
+      input: mail_provider
+      condition:
+        eq: Mailgun
+    required: true
+  - name: mailgun_password
+    label: Mailgun Password
+    type: text
+    conditional:
+      input: mail_provider
+      condition:
+        eq: Mailgun
+    required: true
+  - name: ses_server_name
+    label: SES Server Name
+    type: text
+    conditional:
+      input: mail_provider
+      condition:
+        eq: SES
+    required: true
+  - name: ses_access_key_id
+    label: SES Access Key ID
+    type: text
+    conditional:
+      input: mail_provider
+      condition:
+        eq: SES
+    required: true
+  - name: ses_secret_access_key
+    label: SES Secret Access Key
+    type: text
+    conditional:
+      input: mail_provider
+      condition:
+        eq: SES
+    required: true

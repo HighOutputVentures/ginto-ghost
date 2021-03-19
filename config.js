@@ -1,6 +1,36 @@
 const fs = require('fs');
 
-console.log(process.env);
+let mail = {
+  transport: 'Direct',
+};
+
+if (process.env.MAIL_PROVIDER === 'Mailgun') {
+  mail = {
+    transport: 'SMTP',
+    options: {
+      service: 'Mailgun',
+      auth: {
+        user: process.env.MAILGUN_USERNAME,
+        pass: process.env.MAILGUN_PASSWORD,
+      }
+    }
+  }
+}
+
+if (process.env.MAIL_PROVIDER === 'SES') {
+  mail = {
+    transport: 'SMTP',
+    options: {
+      host: process.SES_SERVER_NAME,
+      port: 465,
+      service: 'SES',
+      auth: {
+        user: process.env.SES_ACCESS_KEY_ID,
+        pass: process.env.SES_SECRET_ACCESS_KEY,
+      }
+    }
+  }
+}
 
 const config = {
   url: process.env.URL || `https://${process.env.GINTO_DEFAULT_DOMAIN}`,
@@ -14,9 +44,7 @@ const config = {
       filename: '/mnt/data/content/data/ghost.db'
     }
   },
-  mail: {
-    transport: 'Direct'
-  },
+  mail,
   logging: {
     transports: [
       'stdout'
