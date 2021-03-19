@@ -12,19 +12,18 @@ resources:
     build: ./build.sh
     start: ./start.sh
     https: true
+    environment:
+      - name: URL
+        value: '{{ base_url }}'
   - name: data
     type: volume
     size: 
-      minimum: 1
-      default: 2
+      minimum: 5
+      default: 10
     path: /mnt/data
     container: main
 inputs:
-  - name: database
-    label: Database
-    type: enum
-    values:
-      - SQLite
-      - MySQL
-    required: true
-    default: SQLite
+  - name: base_url
+    label: Base URL
+    type: text
+

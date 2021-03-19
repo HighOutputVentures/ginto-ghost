@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const config = {
-  url: 'https://ghost.ginto.io/',
+  url: process.env.URL || `https://${process.env.GINTO_DEFAULT_DOMAIN}`,
   server: {
     port: 80,
     host: '0.0.0.0'
