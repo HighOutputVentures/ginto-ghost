@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+console.log(process.env);
+
 const config = {
   url: process.env.URL || `https://${process.env.GINTO_DEFAULT_DOMAIN}`,
   server: {
