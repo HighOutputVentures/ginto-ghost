@@ -21,7 +21,7 @@ if (process.env.MAIL_PROVIDER === 'SES') {
   mail = {
     transport: 'SMTP',
     options: {
-      host: process.SES_SERVER_NAME,
+      host: process.env.SES_SERVER_NAME,
       port: 465,
       service: 'SES',
       auth: {
