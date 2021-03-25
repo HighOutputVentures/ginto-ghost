@@ -32,6 +32,13 @@ if (process.env.MAIL_PROVIDER === 'SES') {
   }
 }
 
+if (process.env.MAIL_ADDRESS) {
+  mail = {
+    ...mail,
+    from: process.env.MAIL_ADDRESS,
+  };
+}
+
 const config = {
   url: process.env.URL || `https://${process.env.GINTO_DEFAULT_DOMAIN}`,
   server: {
